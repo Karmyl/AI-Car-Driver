@@ -156,7 +156,11 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
+<<<<<<< HEAD
   m_Model: {fileID: 5022602860645237092, guid: 21d093eb0c9c76f41bf9183c6c1f5583, type: 3}
+=======
+  m_Model: {fileID: 5022602860645237092, guid: 3e3b3b7f04678c540b587421a01f5608, type: 3}
+>>>>>>> d49c6812aa735bbd047b2c07e85a9cce5ad6e501
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: MoveToGoal
