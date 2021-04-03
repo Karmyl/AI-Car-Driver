@@ -68,7 +68,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010333933356851746}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2283012, y: -0.33872437, z: 1.6329771}
+  m_LocalPosition: {x: -0.2283012, y: -0.4, z: 1.6329771}
   m_LocalScale: {x: 1, y: 1.0143, z: 1}
   m_Children: []
   m_Father: {fileID: 4917999214832428690}
@@ -156,7 +156,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 21d093eb0c9c76f41bf9183c6c1f5583, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: MoveToGoal
@@ -179,7 +179,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 1000
+  MaxStep: 10000
   targetTranform: {fileID: 1010333934572470506}
   moveSpeed: 5
 --- !u!114 &1010333933356851757
@@ -346,7 +346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010333934266821513}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 7.481699, y: -1.2187244, z: 2.3729773}
+  m_LocalPosition: {x: 7.481699, y: -1.2, z: 2.3729773}
   m_LocalScale: {x: 8.752558, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4917999214832428690}
@@ -651,7 +651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010333934572470510}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2616987, y: -0.33872437, z: 1.2129772}
+  m_LocalPosition: {x: 2.2616987, y: -0.4, z: 1.2129772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4917999214832428690}
