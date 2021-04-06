@@ -14,11 +14,12 @@ public class TrackCheckpoints : MonoBehaviour
     private List<CheckpointSingle> checkpointSingleList;
     private List<int> nextCheckpointSingleIndexList;
 
-    private void Awake() 
+    private void Start() 
     {
         Transform checkpointsTransform = transform.Find("Checkpoints");
 
         checkpointSingleList = new List<CheckpointSingle>();
+        
         foreach (Transform checkpointSingleTransform in checkpointsTransform)
         {
             CheckpointSingle checkpointSingle = checkpointSingleTransform.GetComponent<CheckpointSingle>();
@@ -26,6 +27,7 @@ public class TrackCheckpoints : MonoBehaviour
             checkpointSingle.SetTrackCheckpoints(this);
 
             checkpointSingleList.Add(checkpointSingle);
+            Debug.Log(checkpointSingle.name);
         }
 
         nextCheckpointSingleIndexList = new List<int>();
@@ -69,6 +71,7 @@ public class TrackCheckpoints : MonoBehaviour
     public void ResetCheckpoint(Transform transform)
     {
         nextCheckpointSingleIndexList.Add(0);
+
     }
     public class CarCheckPointEventArgs : EventArgs
 

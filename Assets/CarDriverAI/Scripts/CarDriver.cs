@@ -49,7 +49,7 @@ public class CarDriver : MonoBehaviour {
 
     #endregion
 
-    private void Awake() {
+    private void Start() {
         carRigidbody = GetComponent<Rigidbody>();
     }
     /**
@@ -122,6 +122,8 @@ public class CarDriver : MonoBehaviour {
     {
         //turnAmount = Input.GetAxis("Horizontal"); 
         //forwardAmount = Input.GetAxis("Vertical"); 
+
+        //Debug.Log("cardriver turnamount: " + turnAmount);
 
         if (forwardAmount > 0)
         {

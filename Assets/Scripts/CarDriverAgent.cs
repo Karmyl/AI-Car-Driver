@@ -17,13 +17,12 @@ public class CarDriverAgent : Agent
     private BehaviorParameters behaviorParameters;
     private Rigidbody carDriverRigiBody;
 
-    private void Awake()
+    private void Start()
     {
         carDriver = GetComponent<CarDriver>();
-        
     }
-    void Start()
-    {
+    void Initialize()
+    {        
         trackCheckpoints.OnCarCorrectCheckpoint += TrackCheckpoints_OnCarCorrectCheckpoint;
         trackCheckpoints.OnCarWrongCheckpoint += TrackCheckpoints_OnCarWrongCheckpoint;
     }
@@ -49,29 +48,35 @@ public class CarDriverAgent : Agent
         transform.position = spawnPosition.position + new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         transform.forward = spawnPosition.forward;
         trackCheckpoints.ResetCheckpoint(transform);
-        carDriver.StopCompletely();
+        //carDriver.StopCompletely();
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         Vector3 checkpointForward = trackCheckpoints.GetNextCheckpoint(transform).transform.forward;
-        float directionDot = Vector3.Dot(transform.position, checkpointForward);
+        float directionDot = Vector3.Dot(transform.forward, checkpointForward);
+        //Debug.Log(directionDot + " dd");
         sensor.AddObservation(directionDot);
     }
 
-    public override void OnActionReceived(ActionBuffers actions)
+    public override void OnActionReceived(float[] actions)
     {
 
         float forwardAmount = 0f;
         float turnAmount = 0f;
+        int forwardAction = Mathf.FloorToInt(actions[0]);
+        int turnAction = Mathf.FloorToInt(actions[1]);
 
-        switch (actions.DiscreteActions[0])
+        Debug.Log(forwardAction + ", forward");
+        Debug.Log(turnAction + ", turn");
+        //Debug.Log(actions.ContinuousActions[0] + ", continuous");
+        switch (forwardAction)
         {
             case 0: forwardAmount = 0f; break;
             case 1: forwardAmount = 1f; break;
             case 2: forwardAmount = -1f; break;
         }
-        switch (actions.DiscreteActions[1])
+        switch (turnAction)
         {
             case 0: turnAmount = 0f; break;
             case 1: turnAmount = 1f; break;
@@ -79,7 +84,7 @@ public class CarDriverAgent : Agent
         }
 
         carDriver.SetInputs(forwardAmount, turnAmount);
-        AddReward(-1f / MaxStep);
+        //AddReward(-1f / MaxStep);
     }
 
     public override void Heuristic(in ActionBuffers actionOut)
@@ -101,11 +106,11 @@ public class CarDriverAgent : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision with wlal");
         if (other.TryGetComponent<Wall>(out Wall wall))
         {
+            Debug.Log("Collision with wlal");
             //hit a wall
-            AddReward(-0.5f);
+            SetReward(-0.5f);
             EndEpisode();
         }
     }
@@ -119,8 +124,8 @@ public class CarDriverAgent : Agent
         }
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        RequestDecision();
     }
 }
