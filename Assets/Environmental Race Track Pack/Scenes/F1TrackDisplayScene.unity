@@ -3206,8 +3206,8 @@ GameObject:
   - component: {fileID: 1354436915}
   - component: {fileID: 1354436914}
   - component: {fileID: 1354436917}
-  - component: {fileID: 1354436919}
   - component: {fileID: 1354436918}
+  - component: {fileID: 1354436919}
   - component: {fileID: 1354436920}
   m_Layer: 0
   m_Name: Car
@@ -3349,7 +3349,7 @@ MonoBehaviour:
   - Checkpoint
   m_RaysPerDirection: 3
   m_MaxRayDegrees: 70
-  m_SphereCastRadius: 0.5
+  m_SphereCastRadius: 0.55
   m_RayLength: 50
   m_RayLayerMask:
     serializedVersion: 2

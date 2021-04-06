@@ -20,11 +20,13 @@ public class CarDriverAgent : Agent
     private void Start()
     {
         carDriver = GetComponent<CarDriver>();
+        carDriverRigiBody = GetComponent<Rigidbody>();
+        trackCheckpoints.OnCarCorrectCheckpoint += TrackCheckpoints_OnCarCorrectCheckpoint;
+        trackCheckpoints.OnCarWrongCheckpoint += TrackCheckpoints_OnCarWrongCheckpoint;
     }
     void Initialize()
     {        
-        trackCheckpoints.OnCarCorrectCheckpoint += TrackCheckpoints_OnCarCorrectCheckpoint;
-        trackCheckpoints.OnCarWrongCheckpoint += TrackCheckpoints_OnCarWrongCheckpoint;
+
     }
 
     private void TrackCheckpoints_OnCarCorrectCheckpoint(object sender, TrackCheckpoints.CarCheckPointEventArgs e)
@@ -48,7 +50,7 @@ public class CarDriverAgent : Agent
         transform.position = spawnPosition.position + new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         transform.forward = spawnPosition.forward;
         trackCheckpoints.ResetCheckpoint(transform);
-        //carDriver.StopCompletely();
+        carDriver.StopCompletely();
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -57,15 +59,19 @@ public class CarDriverAgent : Agent
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);
         //Debug.Log(directionDot + " dd");
         sensor.AddObservation(directionDot);
+
     }
 
-    public override void OnActionReceived(float[] actions)
+    public override void OnActionReceived(ActionBuffers actions)
     {
 
         float forwardAmount = 0f;
         float turnAmount = 0f;
-        int forwardAction = Mathf.FloorToInt(actions[0]);
-        int turnAction = Mathf.FloorToInt(actions[1]);
+        //int forwardAction = Mathf.FloorToInt(actions[0]);
+        //int turnAction = Mathf.FloorToInt(actions[1]);
+
+        int forwardAction = actions.DiscreteActions[0];
+        int turnAction = actions.DiscreteActions[1];
 
         Debug.Log(forwardAction + ", forward");
         Debug.Log(turnAction + ", turn");
@@ -110,7 +116,7 @@ public class CarDriverAgent : Agent
         {
             Debug.Log("Collision with wlal");
             //hit a wall
-            SetReward(-0.5f);
+            AddReward(-0.5f);
             EndEpisode();
         }
     }
@@ -126,6 +132,9 @@ public class CarDriverAgent : Agent
     // Update is called once per frame
     void FixedUpdate()
     {
-        RequestDecision();
+        if(StepCount == MaxStep)
+        {
+            //AddReward(-1.0f);
+        }
     }
 }

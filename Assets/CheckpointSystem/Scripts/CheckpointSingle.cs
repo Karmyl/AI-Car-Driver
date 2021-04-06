@@ -11,7 +11,6 @@ public class CheckpointSingle : MonoBehaviour
     {
         if (other.TryGetComponent<CarDriver>(out CarDriver carDriver))
         {
-            Debug.Log(carDriver.name);
             trackCheckpoints.CarThroughCheckpoint(this, carDriver.transform);
         }
     }
