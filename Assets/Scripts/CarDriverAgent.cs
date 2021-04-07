@@ -8,27 +8,25 @@ using Unity.MLAgents.Policies;
 
 public class CarDriverAgent : Agent
 {
-
+    //Field for inspector
     [SerializeField] private TrackCheckpoints trackCheckpoints;
     [SerializeField] private Transform spawnPosition;
 
+    //general
     private CarDriver carDriver;
     private Vector3 originalPosition;
     private BehaviorParameters behaviorParameters;
-    private Rigidbody carDriverRigiBody;
+    private Rigidbody rBody;
 
     private void Start()
     {
         carDriver = GetComponent<CarDriver>();
-        carDriverRigiBody = GetComponent<Rigidbody>();
+        rBody = GetComponent<Rigidbody>();
         trackCheckpoints.OnCarCorrectCheckpoint += TrackCheckpoints_OnCarCorrectCheckpoint;
         trackCheckpoints.OnCarWrongCheckpoint += TrackCheckpoints_OnCarWrongCheckpoint;
     }
-    void Initialize()
-    {        
 
-    }
-
+    //give positive reward if car is on correct checkpoint
     private void TrackCheckpoints_OnCarCorrectCheckpoint(object sender, TrackCheckpoints.CarCheckPointEventArgs e)
     {
         if (e.carTransform == transform)
@@ -37,6 +35,7 @@ public class CarDriverAgent : Agent
             AddReward(1f);
         }
     }
+    //give negative reward if car is on wrong checkpoint
     private void TrackCheckpoints_OnCarWrongCheckpoint(object sender, TrackCheckpoints.CarCheckPointEventArgs e)
     {
         if (e.carTransform == transform)
@@ -45,6 +44,8 @@ public class CarDriverAgent : Agent
             AddReward(-1f);
         }
     }
+
+    //begin episode
     public override void OnEpisodeBegin()
     {
         transform.position = spawnPosition.position + new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
@@ -53,44 +54,46 @@ public class CarDriverAgent : Agent
         carDriver.StopCompletely();
     }
 
+    //add observations to sensor for decision making
     public override void CollectObservations(VectorSensor sensor)
     {
         Vector3 checkpointForward = trackCheckpoints.GetNextCheckpoint(transform).transform.forward;
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);
-        //Debug.Log(directionDot + " dd");
         sensor.AddObservation(directionDot);
-
     }
 
+    //Handles actions received from the agent
     public override void OnActionReceived(ActionBuffers actions)
     {
-
         float forwardAmount = 0f;
         float turnAmount = 0f;
-        //int forwardAction = Mathf.FloorToInt(actions[0]);
-        //int turnAction = Mathf.FloorToInt(actions[1]);
 
-        int forwardAction = actions.DiscreteActions[0];
-        int turnAction = actions.DiscreteActions[1];
+        int forwardAction = actions.DiscreteActions[0]; //actions for acceleration
+        int turnAction = actions.DiscreteActions[1];    //actions for turning
 
-        Debug.Log(forwardAction + ", forward");
-        Debug.Log(turnAction + ", turn");
-        //Debug.Log(actions.ContinuousActions[0] + ", continuous");
+        //if actions change from 0 -> write to debug log
+        if (forwardAction == 1 || forwardAction == 2 || turnAction == 1 || turnAction == 2)
+        {
+            Debug.Log(forwardAction + ", forward");
+            Debug.Log(turnAction + ", turn");
+        }
+
+        //set forwardamount and turnamount based on discreteactions
         switch (forwardAction)
         {
-            case 0: forwardAmount = 0f; break;
-            case 1: forwardAmount = 1f; break;
-            case 2: forwardAmount = -1f; break;
+            case 0: forwardAmount = 0f; break;  //do nothing
+            case 1: forwardAmount = 1f; break;  //accelerate forward
+            case 2: forwardAmount = -1f; break; //accelerate backward
         }
         switch (turnAction)
         {
-            case 0: turnAmount = 0f; break;
-            case 1: turnAmount = 1f; break;
-            case 2: turnAmount = -1f; break;
+            case 0: turnAmount = 0f; break;     //do nothing
+            case 1: turnAmount = 1f; break;     //turn right
+            case 2: turnAmount = -1f; break;    //turn left
         }
 
         carDriver.SetInputs(forwardAmount, turnAmount);
-        //AddReward(-1f / MaxStep);
+        AddReward(-1f / MaxStep);
     }
 
     public override void Heuristic(in ActionBuffers actionOut)
@@ -114,16 +117,17 @@ public class CarDriverAgent : Agent
     {
         if (other.TryGetComponent<Wall>(out Wall wall))
         {
-            Debug.Log("Collision with wlal");
+            Debug.Log("negative reward: -0.5f");
             //hit a wall
             AddReward(-0.5f);
-            EndEpisode();
+            //EndEpisode();
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent<Wall>(out Wall wall))
         {
+            Debug.Log("negative reward: -0.1f");
             //hit a wall
             AddReward(-0.1f);
             
@@ -132,9 +136,6 @@ public class CarDriverAgent : Agent
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(StepCount == MaxStep)
-        {
-            //AddReward(-1.0f);
-        }
+
     }
 }

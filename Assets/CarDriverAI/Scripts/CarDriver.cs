@@ -6,7 +6,7 @@ using UnityEngine;
 public class CarDriver : MonoBehaviour {
 
     #region Fields
-    private float speed;
+    private float speed = 50f;
     private float speedMax = 70f;
     private float speedMin = -50f;
     private float acceleration = 30f;
@@ -14,7 +14,7 @@ public class CarDriver : MonoBehaviour {
     private float reverseSpeed = 30f;
     private float idleSlowdown = 10f;
 
-    private float turnSpeed;
+    private float turnSpeed = 0f;
     private float turnSpeedMax = 300f;
     private float turnSpeedAcceleration = 300f;
     private float turnIdleSlowdown = 500f;
@@ -204,12 +204,6 @@ public class CarDriver : MonoBehaviour {
         }
     }
     
-
-    //private void OnCollisionEnter(Collision collision) {
-    //    if (collision.gameObject.layer == gameObject.layer) {
-    //        speed = Mathf.Clamp(speed, 0f, 20f);
-    //    }
-    //}
 
     public void SetInputs(float forwardAmount, float turnAmount) {
         this.forwardAmount = forwardAmount;
