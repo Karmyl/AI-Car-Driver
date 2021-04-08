@@ -14,12 +14,12 @@ public class TrackCheckpoints : MonoBehaviour
     private List<CheckpointSingle> checkpointSingleList;
     private List<int> nextCheckpointSingleIndexList;
 
-    private void Start() 
+    private void Start()
     {
         Transform checkpointsTransform = transform.Find("Checkpoints");
 
         checkpointSingleList = new List<CheckpointSingle>();
-        
+
         foreach (Transform checkpointSingleTransform in checkpointsTransform)
         {
             CheckpointSingle checkpointSingle = checkpointSingleTransform.GetComponent<CheckpointSingle>();
@@ -31,7 +31,7 @@ public class TrackCheckpoints : MonoBehaviour
         }
 
         nextCheckpointSingleIndexList = new List<int>();
-        foreach (Transform carTransform in carTransformList) 
+        foreach (Transform carTransform in carTransformList)
         {
             nextCheckpointSingleIndexList.Add(0);
         }
@@ -41,7 +41,7 @@ public class TrackCheckpoints : MonoBehaviour
     {
         CarCheckPointEventArgs e = new CarCheckPointEventArgs(carTransform);
         int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
-        if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex) 
+        if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
         {
             // Correct checkpoint
             Debug.Log("Correct");
@@ -51,7 +51,9 @@ public class TrackCheckpoints : MonoBehaviour
             nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)]
                 = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
             OnCarCorrectCheckpoint?.Invoke(this, e);
-        } else {
+        }
+        else
+        {
             // Wrong checkpoint
             Debug.Log("Wrong");
             OnCarWrongCheckpoint?.Invoke(this, e);
@@ -68,9 +70,25 @@ public class TrackCheckpoints : MonoBehaviour
         return checkpointSingleList[index];
     }
 
-    public void ResetCheckpoint(Transform transform)
+    public void ResetCheckpoint()
     {
-        nextCheckpointSingleIndexList.Add(0);
+        Transform checkpointsTransform = transform.Find("Checkpoints");
+
+        foreach (Transform checkpointSingleTransform in checkpointsTransform)
+        {
+            CheckpointSingle checkpointSingle = checkpointSingleTransform.GetComponent<CheckpointSingle>();
+
+            checkpointSingle.SetTrackCheckpoints(this);
+
+            checkpointSingleList.Add(checkpointSingle);
+            Debug.Log(checkpointSingle.name);
+        }
+
+        nextCheckpointSingleIndexList.Clear();
+        foreach (Transform carTransform in carTransformList)
+        {
+            nextCheckpointSingleIndexList.Add(0);
+        }
 
     }
     public class CarCheckPointEventArgs : EventArgs

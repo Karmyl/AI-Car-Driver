@@ -50,7 +50,7 @@ public class CarDriverAgent : Agent
     {
         transform.position = spawnPosition.position + new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
         transform.forward = spawnPosition.forward;
-        trackCheckpoints.ResetCheckpoint(transform);
+        trackCheckpoints.ResetCheckpoint();
         carDriver.StopCompletely();
     }
 
@@ -71,12 +71,6 @@ public class CarDriverAgent : Agent
         int forwardAction = actions.DiscreteActions[0]; //actions for acceleration
         int turnAction = actions.DiscreteActions[1];    //actions for turning
 
-        //if actions change from 0 -> write to debug log
-        if (forwardAction == 1 || forwardAction == 2 || turnAction == 1 || turnAction == 2)
-        {
-            Debug.Log(forwardAction + ", forward");
-            Debug.Log(turnAction + ", turn");
-        }
 
         //set forwardamount and turnamount based on discreteactions
         switch (forwardAction)
@@ -93,7 +87,7 @@ public class CarDriverAgent : Agent
         }
 
         carDriver.SetInputs(forwardAmount, turnAmount);
-        AddReward(-1f / MaxStep);
+        //AddReward(-1f / MaxStep);
     }
 
     public override void Heuristic(in ActionBuffers actionOut)
@@ -117,20 +111,19 @@ public class CarDriverAgent : Agent
     {
         if (other.TryGetComponent<Wall>(out Wall wall))
         {
-            Debug.Log("negative reward: -0.5f");
+            //Debug.Log("negative reward: -0.5f");
             //hit a wall
             AddReward(-0.5f);
-            //EndEpisode();
+            EndEpisode();
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent<Wall>(out Wall wall))
         {
-            Debug.Log("negative reward: -0.1f");
+            //Debug.Log("negative reward: -0.1f");
             //hit a wall
-            AddReward(-0.1f);
-            
+            AddReward(-0.1f);           
         }
     }
     // Update is called once per frame
