@@ -52,6 +52,7 @@ public class CarDriverAgent : Agent
         transform.forward = spawnPosition.forward;
         trackCheckpoints.ResetCheckpoint();
         carDriver.StopCompletely();
+        MaxStep = MaxStep + 10;
     }
 
     //add observations to sensor for decision making
