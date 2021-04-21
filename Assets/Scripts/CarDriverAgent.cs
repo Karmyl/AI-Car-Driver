@@ -52,7 +52,7 @@ public class CarDriverAgent : Agent
         transform.forward = spawnPosition.forward;
         trackCheckpoints.ResetCheckpoint();
         carDriver.StopCompletely();
-        MaxStep = MaxStep + 10;
+        //MaxStep = MaxStep + 10;
     }
 
     //add observations to sensor for decision making
@@ -115,7 +115,7 @@ public class CarDriverAgent : Agent
             //Debug.Log("negative reward: -0.5f");
             //hit a wall
             AddReward(-0.5f);
-            EndEpisode();
+            //EndEpisode();
         }
     }
     private void OnTriggerStay(Collider other)

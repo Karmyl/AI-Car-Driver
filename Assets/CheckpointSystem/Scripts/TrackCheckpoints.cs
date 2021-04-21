@@ -43,14 +43,23 @@ public class TrackCheckpoints : MonoBehaviour
         int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
         {
-            // Correct checkpoint
             Debug.Log("Correct");
+            Debug.Log(checkpointSingleList.IndexOf(checkpointSingle));
+            Debug.Log(checkpointSingleList.Count);
             CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
             //correctCheckpointSingle.Hide();
 
             nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)]
                 = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
             OnCarCorrectCheckpoint?.Invoke(this, e);
+
+            //if the car passes through the last checkpoint -> reset checkpoints
+            if(checkpointSingleList.IndexOf(checkpointSingle) == (checkpointSingleList.Count - 127))
+            {
+                ResetCheckpoint();
+                Debug.Log("checpoints resetted");
+            }
+            // Correct checkpoint
         }
         else
         {
