@@ -112,7 +112,7 @@ public class CarDriverAgent : Agent
     {
         if (other.TryGetComponent<Wall>(out Wall wall))
         {
-            //Debug.Log("negative reward: -0.5f");
+            Debug.Log("negative reward: -0.5f");
             //hit a wall
             AddReward(-0.5f);
             //EndEpisode();
@@ -122,7 +122,7 @@ public class CarDriverAgent : Agent
     {
         if (other.TryGetComponent<Wall>(out Wall wall))
         {
-            //Debug.Log("negative reward: -0.1f");
+            Debug.Log("negative reward: -0.1f");
             //hit a wall
             AddReward(-0.1f);           
         }
