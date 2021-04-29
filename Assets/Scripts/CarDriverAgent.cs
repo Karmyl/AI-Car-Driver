@@ -108,9 +108,9 @@ public class CarDriverAgent : Agent
         discreteActions[1] = turnAction;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.TryGetComponent<Wall>(out Wall wall))
+        if (other.gameObject.tag == "Wall")
         {
             Debug.Log("negative reward: -0.5f");
             //hit a wall
@@ -118,9 +118,9 @@ public class CarDriverAgent : Agent
             //EndEpisode();
         }
     }
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionStay(Collision other)
     {
-        if (other.TryGetComponent<Wall>(out Wall wall))
+        if (other.gameObject.tag == "Wall")
         {
             Debug.Log("negative reward: -0.1f");
             //hit a wall
