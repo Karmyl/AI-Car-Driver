@@ -27,7 +27,6 @@ public class TrackCheckpoints : MonoBehaviour
             checkpointSingle.SetTrackCheckpoints(this);
 
             checkpointSingleList.Add(checkpointSingle);
-            Debug.Log(checkpointSingle.name);
         }
 
         nextCheckpointSingleIndexList = new List<int>();
@@ -43,9 +42,8 @@ public class TrackCheckpoints : MonoBehaviour
         int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
         {
-            Debug.Log("Correct");
-            Debug.Log(checkpointSingleList.IndexOf(checkpointSingle));
-            Debug.Log(checkpointSingleList.Count);
+            Debug.Log("Correct + " + nextCheckpointSingleIndex);
+            Debug.Log("Passed " + checkpointSingleList.IndexOf(checkpointSingle));
             CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
             //correctCheckpointSingle.Hide();
 
@@ -59,16 +57,12 @@ public class TrackCheckpoints : MonoBehaviour
                 ResetCheckpoint();
                 Debug.Log("checpoints resetted");
             }
-            // Correct checkpoint
         }
         else
         {
             // Wrong checkpoint
             Debug.Log("Wrong");
             OnCarWrongCheckpoint?.Invoke(this, e);
-
-            CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
-            //correctCheckpointSingle.Show();
         }
     }
 
@@ -81,6 +75,7 @@ public class TrackCheckpoints : MonoBehaviour
 
     public void ResetCheckpoint()
     {
+        checkpointSingleList.Clear();
         Transform checkpointsTransform = transform.Find("Checkpoints");
 
         foreach (Transform checkpointSingleTransform in checkpointsTransform)
@@ -90,7 +85,6 @@ public class TrackCheckpoints : MonoBehaviour
             checkpointSingle.SetTrackCheckpoints(this);
 
             checkpointSingleList.Add(checkpointSingle);
-            Debug.Log(checkpointSingle.name);
         }
 
         nextCheckpointSingleIndexList.Clear();

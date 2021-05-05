@@ -14,14 +14,10 @@ public class CarDriverAgent : Agent
 
     //general
     private CarDriver carDriver;
-    private Vector3 originalPosition;
-    private BehaviorParameters behaviorParameters;
-    private Rigidbody rBody;
 
     private void Start()
     {
         carDriver = GetComponent<CarDriver>();
-        rBody = GetComponent<Rigidbody>();
         trackCheckpoints.OnCarCorrectCheckpoint += TrackCheckpoints_OnCarCorrectCheckpoint;
         trackCheckpoints.OnCarWrongCheckpoint += TrackCheckpoints_OnCarWrongCheckpoint;
     }
@@ -31,8 +27,12 @@ public class CarDriverAgent : Agent
     {
         if (e.carTransform == transform)
         {
-            Debug.Log("Positive reward!");
             AddReward(1f);
+            
+            if(gameObject.name.Equals("Car"))
+            {
+                Debug.Log("Positive reward!");
+            }
         }
     }
     //give negative reward if car is on wrong checkpoint
@@ -40,7 +40,11 @@ public class CarDriverAgent : Agent
     {
         if (e.carTransform == transform)
         {
-            Debug.Log("negative reward!");
+            if (gameObject.name.Equals("Car"))
+            {
+                Debug.Log("negative reward!");
+
+            }
             AddReward(-1f);
         }
     }
@@ -52,7 +56,7 @@ public class CarDriverAgent : Agent
         transform.forward = spawnPosition.forward;
         trackCheckpoints.ResetCheckpoint();
         carDriver.StopCompletely();
-        //MaxStep = MaxStep + 10;
+        MaxStep = MaxStep + 10;
     }
 
     //add observations to sensor for decision making
@@ -60,6 +64,7 @@ public class CarDriverAgent : Agent
     {
         Vector3 checkpointForward = trackCheckpoints.GetNextCheckpoint(transform).transform.forward;
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);
+        //Debug.Log(directionDot + " D-dot");
         sensor.AddObservation(directionDot);
     }
 
@@ -110,7 +115,7 @@ public class CarDriverAgent : Agent
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Wall")
+        if (other.gameObject.TryGetComponent<Wall>(out Wall wall))
         {
             Debug.Log("negative reward: -0.5f");
             //hit a wall
@@ -120,16 +125,11 @@ public class CarDriverAgent : Agent
     }
     private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.tag == "Wall")
+        if (other.gameObject.TryGetComponent<Wall>(out Wall wall))
         {
             Debug.Log("negative reward: -0.1f");
             //hit a wall
             AddReward(-0.1f);           
         }
-    }
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
     }
 }
