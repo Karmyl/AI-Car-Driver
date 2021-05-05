@@ -967,7 +967,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   trackCheckpoints: {fileID: 1719162667}
-  spawnPosition: {fileID: 974094360}
+  spawnPosition: {fileID: 629901669}
 --- !u!65 &31347679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5166,7 +5166,7 @@ GameObject:
   - component: {fileID: 180505233}
   - component: {fileID: 180505232}
   m_Layer: 0
-  m_Name: Car3 (1)
+  m_Name: Car8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5278,7 +5278,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   trackCheckpoints: {fileID: 1719162667}
-  spawnPosition: {fileID: 809220720}
+  spawnPosition: {fileID: 576458883}
 --- !u!65 &180505236
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11097,7 +11097,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 522132057}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.010000005, z: 0.69}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1944911943}
@@ -13244,7 +13244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629332003}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.010000005, z: 0.77}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1356830169}
@@ -16551,7 +16551,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772700848}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.010000005, z: 0.39}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 865935205}
@@ -21583,7 +21583,7 @@ GameObject:
   - component: {fileID: 1109572546}
   - component: {fileID: 1109572545}
   m_Layer: 0
-  m_Name: Car1 (2)
+  m_Name: Car5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21695,7 +21695,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   trackCheckpoints: {fileID: 1719162667}
-  spawnPosition: {fileID: 974094360}
+  spawnPosition: {fileID: 1738293067}
 --- !u!65 &1109572549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26302,7 +26302,7 @@ GameObject:
   - component: {fileID: 1294956145}
   - component: {fileID: 1294956144}
   m_Layer: 0
-  m_Name: Car2 (1)
+  m_Name: Car6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26414,7 +26414,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   trackCheckpoints: {fileID: 1719162667}
-  spawnPosition: {fileID: 388197679}
+  spawnPosition: {fileID: 718864238}
 --- !u!65 &1294956148
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30760,7 +30760,7 @@ GameObject:
   - component: {fileID: 1551917220}
   - component: {fileID: 1551917219}
   m_Layer: 0
-  m_Name: Car3 (2)
+  m_Name: Car9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30872,7 +30872,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   trackCheckpoints: {fileID: 1719162667}
-  spawnPosition: {fileID: 809220720}
+  spawnPosition: {fileID: 587762980}
 --- !u!65 &1551917223
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38723,7 +38723,7 @@ GameObject:
   - component: {fileID: 1985384732}
   - component: {fileID: 1985384731}
   m_Layer: 0
-  m_Name: Car2 (2)
+  m_Name: Car7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38835,7 +38835,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   trackCheckpoints: {fileID: 1719162667}
-  spawnPosition: {fileID: 388197679}
+  spawnPosition: {fileID: 1345012797}
 --- !u!65 &1985384735
 BoxCollider:
   m_ObjectHideFlags: 0

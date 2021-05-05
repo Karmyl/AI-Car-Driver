@@ -52,7 +52,7 @@ public class CarDriverAgent : Agent
     //begin episode
     public override void OnEpisodeBegin()
     {
-        transform.position = spawnPosition.position + new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
+        transform.position = spawnPosition.position + new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
         transform.forward = spawnPosition.forward;
         trackCheckpoints.ResetCheckpoint();
         carDriver.StopCompletely();
