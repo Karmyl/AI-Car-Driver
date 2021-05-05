@@ -56,7 +56,7 @@ public class CarDriverAgent : Agent
         transform.forward = spawnPosition.forward;
         trackCheckpoints.ResetCheckpoint();
         carDriver.StopCompletely();
-        MaxStep = MaxStep + 10;
+        //MaxStep = MaxStep + 10;
     }
 
     //add observations to sensor for decision making
@@ -64,7 +64,7 @@ public class CarDriverAgent : Agent
     {
         Vector3 checkpointForward = trackCheckpoints.GetNextCheckpoint(transform).transform.forward;
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);
-        //Debug.Log(directionDot + " D-dot");
+        Debug.Log(directionDot + " D-dot");
         sensor.AddObservation(directionDot);
     }
 
