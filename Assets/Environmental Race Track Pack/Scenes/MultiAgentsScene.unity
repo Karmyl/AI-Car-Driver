@@ -942,7 +942,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: af66bae22acd5ec4bae8d5b4286449ed, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 3e3b3b7f04678c540b587421a01f5608, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 1
   m_BehaviorName: CarDriver
@@ -976,7 +976,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31347673}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.148457, z: 4.4}
@@ -5287,7 +5287,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180505230}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.148457, z: 4.4}
@@ -13321,8 +13321,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629901668}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 26.33, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 26.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1719162668}
@@ -17267,7 +17267,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 820319776}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.148457, z: 4.4}
@@ -21704,7 +21704,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109572543}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.148457, z: 4.4}
@@ -26423,7 +26423,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294956142}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.148457, z: 4.4}
@@ -27267,7 +27267,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354436912}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.148457, z: 4.4}
@@ -27346,7 +27346,7 @@ MonoBehaviour:
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 5022602860645237092, guid: af66bae22acd5ec4bae8d5b4286449ed, type: 3}
-  m_InferenceDevice: 2
+  m_InferenceDevice: 0
   m_BehaviorType: 1
   m_BehaviorName: CarDriver
   TeamId: 0
@@ -30881,7 +30881,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551917217}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.148457, z: 4.4}
@@ -33268,6 +33268,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carTransformList:
   - {fileID: 1354436916}
+  - {fileID: 2006368206}
+  - {fileID: 820319777}
+  - {fileID: 31347674}
+  - {fileID: 1109572544}
+  - {fileID: 1294956143}
+  - {fileID: 1985384730}
+  - {fileID: 180505231}
+  - {fileID: 1551917218}
 --- !u!4 &1719162668 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 431926, guid: 9234b507bb1d424449c1997fe6847ae0,
@@ -38844,7 +38852,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985384729}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.148457, z: 4.4}
@@ -39351,7 +39359,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006368205}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.8, y: 1.148457, z: 4.4}
