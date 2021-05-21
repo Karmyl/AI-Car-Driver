@@ -20,13 +20,11 @@ behaviors:
         strength: 0.1
       gail:
         strength: 1.0
-        gamma: 0.99
-        demo_path: Demos/CarDriverDemo.demo
+        demo_path: Demos/CarDriver.demo
     behavioral_cloning:
-      strength: 1.0
-      gamma: 0.99
-      demo_path: Demos/CarDriverDemo.demo
-    max_steps: 5000000
+       strength: 1.0
+       demo_path: Demos/CarDriver.demo
+    max_steps: 6000000
     time_horizon: 64
-    summary_freq: 10000
+    summary_freq: 100000
     
