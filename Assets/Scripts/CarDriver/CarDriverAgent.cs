@@ -129,7 +129,7 @@ public class CarDriverAgent : Agent
             Debug.Log("negative reward: -0.5f");
             //hit a wall
             AddReward(-0.5f);
-            EndEpisode();
+            //EndEpisode();
         }
     }
     private void OnCollisionStay(Collision other)

@@ -52,7 +52,8 @@ public class CarDriver : MonoBehaviour {
     private void Start() {
         carRigidbody = GetComponent<Rigidbody>();
     }
-    /**
+
+    /** FOR SMOOTHER DRIVING EXPERIMENT
     private void FixedUpdate()
     {
         GetInput();
@@ -180,12 +181,12 @@ public class CarDriver : MonoBehaviour {
         else 
         {
             // Not turning
-        //    if (turnSpeed > 0) {
-        //        turnSpeed -= turnIdleSlowdown * Time.deltaTime;
-        //    }
-        //    if (turnSpeed < -3) {
-        //        turnSpeed += turnIdleSlowdown * Time.deltaTime;
-        //    }
+            if (turnSpeed > 1) {
+                turnSpeed -= turnIdleSlowdown * Time.deltaTime;
+            }
+            if (turnSpeed < -1) {
+                turnSpeed += turnIdleSlowdown * Time.deltaTime;
+            }
             if (turnSpeed > -1f && turnSpeed < +1f) {
                 // Stop rotating
             }

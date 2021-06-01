@@ -20,6 +20,7 @@ public class TrackCheckpoints : MonoBehaviour
 
         checkpointSingleList = new List<CheckpointSingle>();
 
+        //Add checkpoints to checkpointsinglelist
         foreach (Transform checkpointSingleTransform in checkpointsTransform)
         {
             CheckpointSingle checkpointSingle = checkpointSingleTransform.GetComponent<CheckpointSingle>();
@@ -30,6 +31,7 @@ public class TrackCheckpoints : MonoBehaviour
         }
 
         nextCheckpointSingleIndexList = new List<int>();
+        //set the first checkpoint as the next correct checkpoint for each car in the scene
         foreach (Transform carTransform in carTransformList)
         {
             nextCheckpointSingleIndexList.Add(0);
@@ -40,6 +42,8 @@ public class TrackCheckpoints : MonoBehaviour
     {
         CarCheckPointEventArgs e = new CarCheckPointEventArgs(carTransform);
         int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
+
+        //if the 
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
         {
             Debug.Log("Correct + " + nextCheckpointSingleIndex);

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    //General fields
     public Transform target;
     public Transform lookTarget;
     public float smoothSpeed = 0.125f;
