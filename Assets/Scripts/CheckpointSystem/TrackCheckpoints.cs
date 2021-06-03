@@ -16,17 +16,15 @@ public class TrackCheckpoints : MonoBehaviour
 
     private void Start()
     {
+        //Find checkpoints and format the list of single checkpoints
         Transform checkpointsTransform = transform.Find("Checkpoints");
-
         checkpointSingleList = new List<CheckpointSingle>();
 
         //Add checkpoints to checkpointsinglelist
         foreach (Transform checkpointSingleTransform in checkpointsTransform)
         {
             CheckpointSingle checkpointSingle = checkpointSingleTransform.GetComponent<CheckpointSingle>();
-
             checkpointSingle.SetTrackCheckpoints(this);
-
             checkpointSingleList.Add(checkpointSingle);
         }
 
@@ -38,24 +36,23 @@ public class TrackCheckpoints : MonoBehaviour
         }
     }
 
+    //Called when a car passes a checkpoint
     public void CarThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
     {
         CarCheckPointEventArgs e = new CarCheckPointEventArgs(carTransform);
         int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)];
 
-        //if the 
+        //if the checkpoint matches the next correct checkpoint in the checkpointsinglelist -> invoke cardriveragents's oncarcorrectcheckpoint -method
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
         {
-            Debug.Log("Correct + " + nextCheckpointSingleIndex);
-            Debug.Log("Passed " + checkpointSingleList.IndexOf(checkpointSingle));
             CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
-            //correctCheckpointSingle.Hide();
 
             nextCheckpointSingleIndexList[carTransformList.IndexOf(carTransform)]
                 = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
+
             OnCarCorrectCheckpoint?.Invoke(this, e);
         }
-        else
+        else //invoke cardriveragents's oncarwrongcheckpoint -method
         {
             // Wrong checkpoint
             Debug.Log("Wrong");
@@ -63,7 +60,7 @@ public class TrackCheckpoints : MonoBehaviour
         }
     }
 
-    //Get next checkpoint for changing agents position
+    //Get the next checkpoint for changing agents position
     internal CheckpointSingle GetNextCheckpoint(Transform transform)
     {
         int index = nextCheckpointSingleIndexList[carTransformList.IndexOf(transform)];
@@ -91,6 +88,7 @@ public class TrackCheckpoints : MonoBehaviour
         }
 
     }
+    /**Nested custom class for handling the event for car passing checkpoints*/
     public class CarCheckPointEventArgs : EventArgs
 
     {

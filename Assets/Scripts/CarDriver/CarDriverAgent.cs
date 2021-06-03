@@ -57,7 +57,6 @@ public class CarDriverAgent : Agent
         transform.forward = spawnPosition.forward;
         trackCheckpoints.ResetCheckpoint();
         carDriver.StopCompletely();
-        //MaxStep = MaxStep + 10;
     }
 
     //add observations to sensor for decision making
@@ -93,7 +92,6 @@ public class CarDriverAgent : Agent
         }
 
         carDriver.SetInputs(forwardAmount, turnAmount);
-        //AddReward(-1f / MaxStep);
     }
 
     public override void Heuristic(in ActionBuffers actionOut)
@@ -103,7 +101,7 @@ public class CarDriverAgent : Agent
         if (Input.GetKey(KeyCode.UpArrow)) forwardAction = 1; 
         if (Input.GetKey(KeyCode.DownArrow)) forwardAction = 2;
         
-        //turn left of right
+        //turn left or right
         int turnAction = 0;
         if (Input.GetKey(KeyCode.RightArrow)) turnAction = 1;
         if (Input.GetKey(KeyCode.LeftArrow)) turnAction = 2;
@@ -112,6 +110,8 @@ public class CarDriverAgent : Agent
         discreteActions[0] = forwardAction;
         discreteActions[1] = turnAction;
     }
+
+    /** 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Wall>(out Wall wall))
@@ -121,7 +121,9 @@ public class CarDriverAgent : Agent
             AddReward(-0.5f);
             //EndEpisode();
         }
-    }
+    }*/
+
+    /**Collision detection*/
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.TryGetComponent<Wall>(out Wall wall))
